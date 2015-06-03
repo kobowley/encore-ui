@@ -88,18 +88,20 @@
     <h2 class="title">Flex Order Attribute</h2>
 
     <div layout="row" layout-margin>
-      <div flex flex-order="3" class="flex-box dark-blue">
+      <div flex flex-order="3" class="flex-box dark-blue margin-left">
         [flex-order="3"]
       </div>
-      <div flex flex-order="2" class="flex-box light-blue">
+      <div flex flex-order="2" class="flex-box light-blue margin-right margin-left">
         [flex-order="2"]
       </div>
-      <div flex flex-order="1" class="flex-box dark-green">
+      <div flex flex-order="1" class="flex-box dark-green margin-right">
         [flex-order="1"]
       </div>
     </div>
 
     <p>Add the <code>flex-order</code> attribute to a layout child to set its position within the layout. Any value from 0-9 is accepted.</p>
+
+    <p>Note that the <code>flex-order</code> attribute is not compatible with the <code>flex-margin</code> attribute. This is because the CSS selector engine selects based on DOM markup order and the <code>flex-margin</code> attribute makes use of <code>:first-child</code> and <code>:last-child</code> to apply margins to only the inner elements in the container. As a work-around, <code>[flex-order].left-margin</code> and <code>[flex-order].right-margin</code> classes are availabe to manually add margins. The most likely use cases for these classes is for programatic ordering of children.</p>
 
     <table>
         <tr>
@@ -136,7 +138,7 @@
     <h2 class="title">Flex Offset Attribute</h2>
 
     <div layout="row">
-      <div flex offset="33" class="flex-box dark-blue">
+      <div flex flex-offset="33" class="flex-box dark-blue">
         [flex offset="33"]
       </div>
       <div flex class="flex-box light-blue">

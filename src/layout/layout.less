@@ -26,9 +26,18 @@
   padding: @layout-gutter-width / 2;
 }
 
-[layout-margin],
-[layout-margin] > [flex] {
-  margin: @layout-gutter-width / 2;
+// Vertical margin :not([flex-order])
+[layout-margin] > [flex]:not([flex-order])  {
+  margin-top: @layout-gutter-width / 2;
+  margin-bottom: @layout-gutter-width / 2;
+}
+
+// Margin between but not on outside and not applied to flex-ordered elements
+[layout-margin] > [flex]:not(:first-child):not([flex-order])  {
+  margin-left: @layout-gutter-width / 2;
+}
+[layout-margin] > [flex]:not(:last-child):not([flex-order])  {
+  margin-right: @layout-gutter-width / 2;
 }
 
 [layout-wrap] {
@@ -62,11 +71,18 @@
 
 .flex-order-for-name(@suffix: null) {
   .concat-selector('flex-order', @suffix);
+  [@{selector}].margin-right {
+    margin-right: @layout-gutter-width / 2;
+  }
+  [@{selector}].margin-left {
+    margin-left: @layout-gutter-width / 2;
+  }
   .loop (@i) when (@i < 10) {
     [@{selector}="@{i}"] { order: @i; }
     .loop (@i + 1);
   }
   .loop (0);
+
 }
 
 .layout-for-name(@name) {
