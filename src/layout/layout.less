@@ -26,20 +26,6 @@
   padding: @layout-gutter-width / 2;
 }
 
-// Vertical margin :not([flex-order])
-[layout-margin] > [flex]:not([flex-order])  {
-  margin-top: @layout-gutter-width / 2;
-  margin-bottom: @layout-gutter-width / 2;
-}
-
-// Margin between but not on outside and not applied to flex-ordered elements
-[layout-margin] > [flex]:not(:first-child):not([flex-order])  {
-  margin-left: @layout-gutter-width / 2;
-}
-[layout-margin] > [flex]:not(:last-child):not([flex-order])  {
-  margin-right: @layout-gutter-width / 2;
-}
-
 [layout-wrap] {
   .flex-wrap(wrap);
 }
@@ -66,6 +52,22 @@
 }
 .concat-selector(@base, @value) when (@value = null) {
   @selector: ~'@{base}';
+}
+
+
+// Vertically and horizontally margins, except on outside and on flex-ordered elements
+.layout-margin-for-name(@divisor, @suffix: null) {
+  .concat-selector('flex', @suffix);
+  [layout-margin] > [@{selector}]:not([flex-order])  {
+    margin-top: @layout-gutter-width / @divisor;
+    margin-bottom: @layout-gutter-width / @divisor;
+  }
+  [layout-margin] > [@{selector}]:not(:first-child):not([flex-order])  {
+    margin-left: @layout-gutter-width / @divisor;
+  }
+  [layout-margin] > [@{selector}]:not(:last-child):not([flex-order])  {
+    margin-right: @layout-gutter-width / @divisor;
+  }
 }
 
 
@@ -206,6 +208,7 @@
 // Flex attributes for layout children
 // ------------------------------
 
+.layout-margin-for-name(2);
 .flex-properties-for-name();
 .layout-align-for-name();
 .flex-order-for-name();
