@@ -55,7 +55,7 @@
 }
 
 
-// Vertically and horizontally margins, except on outside and on flex-ordered elements
+// Vertical and horizontal margins, except on outside and on flex-ordered elements
 .layout-margin-for-name(@divisor, @suffix: null) {
   .concat-selector('flex', @suffix);
   [layout-margin] > [@{selector}]:not([flex-order])  {
